@@ -1,0 +1,42 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Aug 16 09:22:54 2023
+
+@author: USER
+"""
+"""
+使用set集合,製作一個包牌程式,玩家輸入3個包牌號碼,另外3個使用random產生,
+並輸入購買金額(1注50元),產生多組包牌組合?
+"""
+import random
+user=set()
+tmp=set()  #清除random數字
+i=1
+while i<=3:
+    n=int(input("輸入第"+str(i)+"個號碼:"))
+    if n<1 or n>49:
+        print("超出範圍,必須1~49")
+        continue
+    if n in user:
+        print("號碼重覆")
+        continue
+    user.add(n)
+    tmp.add(n)
+    i+=1
+print("user=",user)
+money=int(input("購買金額(1注50元):"))
+for i in range(money//50):
+    k=1
+    while k<=3:
+        n=random.randint(1,49)
+        if n in user:
+            continue
+        user.add(n)
+        k+=1
+    data=sorted(user)  #排序
+    print("第"+str(i+1)+"組:",data)  #list集合
+    user=user&tmp  #清除random數字
+    
+    
+          
+    
