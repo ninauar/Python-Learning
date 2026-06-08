@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Aug 17 11:40:32 2023
+
+@author: USER
+"""
+
+class Bank:
+    def __init__(self,account,balance):
+        self.account=account
+        self.balance=balance
+    
+    def Saving(self,money):
+        self.balance+=money;
+        print("存款:",money,"元")
+        
+    def getMoney(self,money):
+        self.balance-=money;
+        print("提款:",money,"元")
+        
+class Withdraw(Bank):
+    def __init__(self,a,b):
+        super().__init__(a,b)
+    
+    #覆蓋,覆寫,Override
+    def getMoney(self,money):
+        if money>self.balance:
+            print("提款:",money,"元,存款不足,不能提款")
+        else:
+            #self.balance-=money
+            super().getMoney(money)  #呼叫父類別方法
+            
+            
+if __name__=="__main__":
+    w=Withdraw("1234-5678", 1000)
+    print("account=",w.account)
+    print("balance:",w.balance)
+    w.getMoney(5000)
+    print("balance:",w.balance)
+    w.Saving(6000)
+    print("balance:",w.balance)
+    w.getMoney(3000)
+    print("balance:",w.balance)
+    
+    
+    
+    
+    
